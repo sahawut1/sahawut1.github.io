@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 const line = require('@line/bot-sdk');
 
 const client = new line.Client({
-  channelAccessToken: 'YOUR_CHANNEL_ACCESS_TOKEN'
+  channelAccessToken: 'yBizvY8SnDGEZksDRbYu/oO0uyEjawGTLSMO2+inRwrzsP9nEBHfZ0yZ9GeGrS3ddaBg81Ddnip4GNR5Xg+w0fiNiXZ6d4IvOG4CLqwPHLoiAQ6r7vzWw79uW1Czninu8weSlSGcldEQpEMVgcqUbQdB04t89/1O/w1cDnyilFU='
 });
 
 const express = require('express');
@@ -11,7 +11,7 @@ const app = express();
 // กำหนดการตั้งค่า Google Calendar API
 const calendar = google.calendar({ version: 'v3', auth: 'YOUR_GOOGLE_API_KEY' });
 
-app.post('/webhook', line.middleware({channelSecret: 'YOUR_CHANNEL_SECRET'}), async (req, res) => {
+app.post('/webhook', line.middleware({channelSecret: '72ab68ade20c7e949de98c451b6682b6'}), async (req, res) => {
   const event = req.body.events[0];
 
   if (event.type === 'postback' && event.postback.data === 'calendar_menu_selected') {
