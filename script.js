@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle Menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+});
+
 // Scroll Reveal Animation
 function reveal() {
     const reveals = document.querySelectorAll('.reveal');
@@ -52,20 +71,4 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.service-card').forEach(card => {
     card.classList.add('floating');
 });
-
-// Toggle Menu
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-}); 
+  
