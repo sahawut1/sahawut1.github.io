@@ -1,19 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Toggle Menu
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
-
-    menuToggle.addEventListener('click', () => {
+    
+    menuToggle.addEventListener('click', function() {
         menuToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
-    // Close menu when clicking a link
+    // ปิดเมนูเมื่อคลิกที่ลิงก์
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
         });
+    });
+
+    // ปิดเมนูเมื่อคลิกนอกเมนู
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     });
 });
 
