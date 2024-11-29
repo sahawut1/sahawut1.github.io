@@ -53,26 +53,19 @@ document.querySelectorAll('.service-card').forEach(card => {
     card.classList.add('floating');
 });
 
-// เพิ่มการจัดการเมนูแฮมเบอร์เกอร์สำหรับมือถือ
+// Toggle Menu
 const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+const navMenu = document.querySelector('.nav-menu');
 
 menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
 });
 
-// ปิดเมนูเมื่อคลิกที่ลิงก์ในโหมดมือถือ
-document.querySelectorAll('.nav-links a').forEach(link => {
+// Close menu when clicking a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            navLinks.classList.remove('active');
-        }
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
     });
-});
-
-// ปรับการแสดงผลเมนูเมื่อมีการ resize หน้าจอ
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        navLinks.classList.remove('active');
-    }
 }); 

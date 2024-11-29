@@ -18,20 +18,24 @@ body {
 }
 
 nav {
+    background: var(--primary-color);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
+    color: var(--text-light);
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.nav-links {
+.nav-menu {
     display: flex;
     gap: 2rem;
     list-style: none;
@@ -39,48 +43,89 @@ nav {
     padding: 0;
 }
 
-.nav-links a {
+.nav-menu li a {
+    color: var(--text-light);
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: #007bff;
+.nav-menu li a:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
+/* Hamburger Menu */
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 6px;
     cursor: pointer;
+    padding: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: flex;
     }
 
-    .nav-links {
+    .nav-menu {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        right: 0;
-        background: #fff;
+        width: 100%;
+        background: var(--primary-color);
         flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        gap: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .nav-links.active {
+    .nav-menu.active {
         display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu li a {
+        display: block;
+        padding: 1rem 2rem;
+        border-radius: 0;
+    }
+
+    .nav-menu li a:hover {
+        background: rgba(255, 255, 255, 0.05);
     }
 
     .logo {
         font-size: 1rem;
     }
+}
+
+/* Animation for menu toggle */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 header {
