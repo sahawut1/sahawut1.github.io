@@ -1,26 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
-    menuToggle.addEventListener('click', function() {
+    // Toggle menu when clicking hamburger
+    menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
-    // ปิดเมนูเมื่อคลิกที่ลิงก์
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Close menu when clicking on a menu item
+    const navLinks = document.querySelectorAll('.nav-menu li a');
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
         });
     });
 
-    // ปิดเมนูเมื่อคลิกนอกเมนู
-    document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+    // Close menu when scrolling
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
         }
+        lastScrollTop = scrollTop;
     });
 });
 
